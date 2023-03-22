@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//구현부 insert, erase
 void insert(int idx, int num, int arr[], int& len) {
 	for (int i = len; i > idx; i--)
 	{
