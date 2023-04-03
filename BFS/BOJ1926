@@ -1,0 +1,54 @@
+//BOJ1926 - 그림
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int dx[4] = { 1,0,-1,0 };
+int dy[4] = { 0, 1, 0, -1 };
+int m, n;
+int paper[502][502];
+bool visited[502][502];
+
+int main() 
+{
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int max_area = 0;
+	int cnt = 0;
+	cin >> n >> m;
+	
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < m; j++)
+			cin >> paper[i][j];
+
+	for(int i =0 ;i<n ;i++)
+		for (int j = 0; j < m; j++)
+		{
+			if (paper[i][j] == 0 || visited[i][j])continue;
+			queue<pair<int, int>> Q;
+			Q.push({ i,j });
+			cnt++;
+			visited[i][j] = 1;
+			int area = 0;
+			while (!Q.empty())
+			{
+				pair<int, int> cursor = Q.front();
+				Q.pop();
+				area++;
+				for (int k = 0; k < 4; k++)
+				{
+					int tx = cursor.first + dx[k];
+					int ty = cursor.second + dy[k];
+					if (tx < 0 || ty < 0 || tx >= n || ty >= m ) continue;
+					if (visited[tx][ty]|| paper[tx][ty] != 1)continue;
+					visited[tx][ty] = 1;				
+					Q.push({ tx,ty });
+					
+				}				
+			}
+			max_area = max(max_area, area);
+		}	
+	cout << cnt << '\n' << max_area;
+	return 0;
+}
