@@ -11,3 +11,6 @@ linked list - std::list
 stack - std::stack   
 queue - std::queue   
 deque - std::deque    
+BFS - use Queue
+DFS - use Stack
+recursive - 
