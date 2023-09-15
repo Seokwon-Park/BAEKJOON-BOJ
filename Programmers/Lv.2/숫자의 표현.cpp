@@ -20,6 +20,7 @@ int solution(int n) {
         }
     }
     answer++;
+    //자기 자신에 대한 횟수 1
     
     return answer;
 }
