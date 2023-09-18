@@ -23,3 +23,5 @@ DFS - use Stack
 recursive -> backtracking -> simulation   
 
 C++ 순열 생성 한정 -> next_permutation
+
+IDE없이 풀기.
