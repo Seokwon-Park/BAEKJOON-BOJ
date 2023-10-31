@@ -20,12 +20,14 @@ int solution(vector<int> arr) {
     int answer = 0;
     
     int n = arr[0];
-    int lcm = arr[0];
+    int lcm;
     for(int i = 1; i< arr.size(); i++)
     {   
-        int g = gcd(lcm, arr[i]);
-        lcm *= arr[i];
-        lcm /= g;
+        lcm = n*arr[i];
+        cout << lcm <<endl;
+        n = gcd(n, arr[i]);
+        cout << n << endl;
+        lcm /= n;
     }
     answer = lcm;
    
