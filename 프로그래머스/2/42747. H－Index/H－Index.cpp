@@ -14,7 +14,7 @@ int solution(vector<int> citations) {
     for(int i = 1; i <= a; i++)
     {
         auto itr = lower_bound(citations.begin(), citations.end(), i);
-        if(itr - citations.begin() <= i && citations.end()-itr >=i)
+        if( citations.end()-itr >=i)
         {
             if(i > h )
                 h = i;
