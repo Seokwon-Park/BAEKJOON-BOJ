@@ -1,34 +1,64 @@
-#include <bits/stdc++.h>
+#include <string>
+#include <vector>
 
 using namespace std;
 
 int solution(vector<int> ingredient) {
     int answer = 0;
     
-    string burger = "1231";
-    
-    string list= "";
-    int ix = 0;
-    for(auto i:ingredient)
+    vector<int> stck;
+    int count = 0;
+    for(auto i: ingredient)
     {
-        if(list.length()< 3)
-        {
-            list += i+'0';
-        }
+        if(stck.empty()) stck.push_back(i);
         else
         {
-            list += i+'0';            
-            ix = list.find(burger, list.length()-4);
-            if(ix != -1)
+            if(i == 1 )
             {
-                for(int i =0 ; i< 4; i++)
+                if( stck.back() == 3)
                 {
-                    list.pop_back();
+                    count++;
+                }
+                else
+                {
+                    count--;
+                }
+                stck.push_back(i);
+            }
+            else if(i == 2)
+            {
+                if(stck.back() == 1)
+                {
+                    count++;
+                }
+                else
+                {
+                    count--;
+                }
+                stck.push_back(i);
+            }
+            else if(i == 3)
+            {
+                if(stck.back() == 2)
+                {
+                    count++;
+                }
+                else
+                {
+                    count--;
+                }
+                stck.push_back(i);
+            }
+            if(count == 3)
+            {
+                for(int i =0 ;i < 4; i++)
+                {
+                    stck.pop_back();
                 }
                 answer++;
+                count = 0;
             }
         }
     }
-    
     return answer;
 }
