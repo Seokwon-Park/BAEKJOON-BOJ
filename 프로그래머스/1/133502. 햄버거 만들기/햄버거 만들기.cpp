@@ -14,7 +14,6 @@ int solution(vector<int> ingredient) {
         if(list.length()< 3)
         {
             list += i+'0';
-            cout << list << '\n';
         }
         else
         {
@@ -27,10 +26,6 @@ int solution(vector<int> ingredient) {
                     list.pop_back();
                 }
                 answer++;
-            }
-            else
-            {
-                ix = 0;
             }
         }
     }
