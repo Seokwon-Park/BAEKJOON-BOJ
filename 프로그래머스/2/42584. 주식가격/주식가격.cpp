@@ -7,20 +7,22 @@ vector<int> solution(vector<int> prices) {
     
     stack<int> s;
     
+    int timer = 1;
     for(int i =0; i< prices.size(); i++)
     {        
-        while(!s.empty() && prices[s.top()] > prices[i])
+        while(!s.empty() && s.top() > prices[i])
         {
-            answer[s.top()] = i-s.top();
+            answer[i] = timer++;
             s.pop();
         }
+        timer = 1;
         s.push(i);
-
     }   
     
+    timer = 0;
     while(!s.empty())
     {
-        answer[s.top()] = prices.size() - 1 - s.top();
+        answer[s.top()] = timer++;
         s.pop();
     }
     
