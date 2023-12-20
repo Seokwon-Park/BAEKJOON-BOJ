@@ -2,30 +2,38 @@
 
 using namespace std;
 
-int main()
-{
-	ios::sync_with_stdio(0);
-	cin.tie(0);
+int prefix[200005][26];
 
-	string s;
-	int tc;
-	cin >> s >> tc;
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
 
-	for (int i = 0; i < tc; i++)
-	{
-		char c;
-		int st, ed;
-		cin >> c >> st >> ed;
-		int size = ed - st;
-		int cnt = 0;
-		string sub = s.substr(st, size+1);
-		for (auto k : sub)
-		{
-			if (k == c) cnt ++;
-		}
-		cout << cnt << '\n';
-	}
+    string str;
+    cin >> str;
+    int tc;
+    cin >> tc;
+    
+    for (int i = 1; i <= str.length(); i++)
+    {
+        for (int j = 0; j < 26; j++)
+        {
+            prefix[i][j] = prefix[i-1][j];
+        }
+        prefix[i][str[i-1] - 'a']++;
+    }
 
 
-	return 0;
+    for (int i = 0; i < tc; i++)
+    {
+        char c;
+        int st;
+        int ed;
+
+        cin >> c >> st >> ed;
+
+        cout << prefix[ed + 1][c - 'a'] - prefix[st][c - 'a'] << '\n';
+    }
+
+
+    return 0;
 }
