@@ -9,24 +9,26 @@ int main() {
 	int n;
 	cin >> n;
 
-	string pn = "I";
-	for (int i = 0; i < n; i++)
-	{
-		pn += "OI";
-	}
 	int m;
 	cin >> m;
 	string k;
 	cin >> k;
 
 	int answer = 0;
-	for (int i = 0; i < m; i++)
+	
+	for (int i = 0; i < m;i++)
 	{
+		int rn = 0;
 		if (k[i] == 'I')
 		{
-			if (pn == k.substr(i, pn.length()))
+			while (i < m && (k[i + 1] == 'O' && k[i + 2] == 'I'))
 			{
-				answer++;
+				rn++;
+				i += 2;
+			}
+			if (rn >= n)
+			{
+				answer += rn - n + 1;
 			}
 		}
 	}
