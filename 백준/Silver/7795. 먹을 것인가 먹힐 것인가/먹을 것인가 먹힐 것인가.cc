@@ -27,13 +27,15 @@ int main() {
 		sort(b.begin(), b.end(), greater<int>());
 
 		int answer = 0;
+		int nxt_ix = 0;
 		for (auto i : a)
 		{
-			for (int j = 0; j < m; j++)
+			for (int j = nxt_ix; j < m; j++)
 			{
 				if (i > b[j])
 				{
 					answer += m - j;
+					nxt_ix = j;
 					break;
 				}
 			}
