@@ -8,7 +8,7 @@ int p[1000001];
 
 int find(int x)
 {
-	if (x == p[x]) return x;
+	if (p[x] < 0) return x;
 	return p[x] = find(p[x]);
 }
 
@@ -35,7 +35,7 @@ int main() {
 	int n, m;
 	cin >> n >> m;
 
-	for (int i = 0; i <= n; i++) p[i] = i;
+	for (int i = 0; i <= n; i++) p[i] = -1;
 
 	for (int i = 0; i < m; i++)
 	{
