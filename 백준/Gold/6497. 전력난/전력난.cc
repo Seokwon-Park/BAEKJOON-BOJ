@@ -2,6 +2,23 @@
 
 using namespace std;
 
+vector<int> p(200005, -1);
+
+int find(int x)
+{
+	if (p[x] < 0) return x;
+	return p[x] = find(p[x]);
+}
+
+bool isDiff(int a, int b)
+{
+	a = find(a); b = find(b);
+	if (a == b) return false;
+	if (p[a] == p[b]) p[a]--;
+	if (p[a] < p[b]) p[b] = a;
+	else p[a] = b;
+	return true;
+}
 
 
 int main()
@@ -14,51 +31,42 @@ int main()
 		int n, m;
 		cin >> n >> m;
 
-		vector<vector<pair<int, int>>> adj(n); // v, cost;
-		vector<bool> chk(n, false);
-
 		if (n == 0 && m == 0)
 		{
 			break;
 		}
 
+		vector<tuple<int, int, int>> edges(n);
+		
 		int tot = 0;
 		for (int i = 0; i < m; i++)
 		{
 			int x, y, z;
 			cin >> x >> y >> z;
 			tot += z;
-			adj[x].push_back({ y, z });
-			adj[y].push_back({ x, z });
+			edges.push_back(tie(z, x, y));
 		}
 
-		priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> pq;
+		sort(edges.begin(), edges.end());
 
-		for (auto [nxt, nxtc] : adj[0])
-		{
-			pq.push({ nxtc, 0, nxt });
-		}
-		chk[0] = true;
 		int cnt = 0;
 		int mst = 0;
-		while (cnt < n - 1)
+		for (int i = 0; i < edges.size(); i++)
 		{
 			int a, b, cost;
-			tie(cost, a, b) = pq.top(); pq.pop();
-			if (chk[b]) continue;
-			mst += cost;
-			cnt++;
-			chk[b] = true;
-			for (auto [nxt, nxtc] : adj[b])
+			tie(cost, a, b) = edges[i];
+			if (isDiff(a, b)) // 연결 해야 되면. 연결하고 mst 갱신
 			{
-				if (!chk[nxt])
-					pq.push({ nxtc, b, nxt });
+				cnt++;
+				mst += cost;
 			}
-
+			if (cnt == n - 1) break;
 		}
+
 
 		//cout << mst;
 		cout << tot - mst << '\n';
+		fill(p.begin(), p.end(), -1);
 	}
 
 	return 0;
