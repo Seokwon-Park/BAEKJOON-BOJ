@@ -5,14 +5,15 @@ using namespace std;
 #define INF 0x3f3f3f3f
 
 vector<pair<int, int>> adj[1005]; // cost, b;
-map<int, map<int, vector<int>>> adjj;
+//map<int, map<int, vector<int>>> adjj;
 
 
 int n, m;
 int d[1005];
 int d2[1005];
 int pre[1005];
-
+bool block[1005][1005];
+vector<int> adjj[1005][1005];
 int main()
 {
 	ios::sync_with_stdio(false);
@@ -60,7 +61,7 @@ int main()
 	}
 
 	int cur = n;
-	map<int, map<int, bool>> block;
+	
 	while (cur != 1)
 	{
 		block[pre[cur]][cur] = true;
