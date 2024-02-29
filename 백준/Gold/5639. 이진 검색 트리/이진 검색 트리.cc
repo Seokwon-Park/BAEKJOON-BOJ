@@ -2,34 +2,24 @@
 
 using namespace std;
 
-int lc[1000005];
-int rc[1000005];
-int root = -1;
+vector<int> bst;
 
-void insert(int cur, int n)
+void postorder(int st, int ed)
 {
-	if (n < cur)
+	int mid = st + 1;
+	if (st == ed) return;
+	if (st == ed - 1)
 	{
-		if (lc[cur] == 0)
-			lc[cur] = n;
-		else
-			insert(lc[cur], n);
+		cout << bst[st] << '\n'; 
+		return;
 	}
-	else
+	while (mid < ed && bst[mid] < bst[st])
 	{
-		if (rc[cur] == 0)
-			rc[cur] = n;
-		else
-			insert(rc[cur], n);
+		mid++;
 	}
-
-}
-
-void postorder(int node)
-{
-	if (lc[node]) postorder(lc[node]);
-	if (rc[node]) postorder(rc[node]);
-	cout << node << '\n';
+	postorder(st + 1, mid);
+	postorder(mid, ed);
+	cout << bst[st] << '\n';
 }
 
 
@@ -40,18 +30,13 @@ int main()
 	cin.tie(0);
 
 	int n;
+
 	while (cin >> n)
 	{
-		if (root == -1)
-		{
-			root = n;
-			continue;
-		}
-
-		insert(root, n);
+		bst.push_back(n);
 	}
 
-	postorder(root);
+	postorder(0, bst.size());
 
 
 	return 0;
