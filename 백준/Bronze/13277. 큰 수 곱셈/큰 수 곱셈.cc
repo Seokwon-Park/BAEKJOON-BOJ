@@ -54,37 +54,24 @@ cpvec FFT(cpvec cv)
 	return res;
 }
 
-// 더 간단하게 만들 수 있을듯
+//// https://rosettacode.org/wiki/Fast_Fourier_transform의 역행렬 변환 코드
 cpvec InvFFT(cpvec cv)
 {
-	int n = cv.size();
-	if (n == 1) return cv; // 기저 조건
-	// 짝수항 홀수항으로 나눌것이기 때문에 크기를 절반(앞에서 크기를 2의 거듭제곱으로 만듦)
-	cp wn(cos(-2 * PI / n), sin(-2 * PI / n));
-	cp w(1, 0);
-	cpvec even;
-	cpvec odd;
-	for (int i = 0; i < n; i++)
+	for (auto& i : cv)
 	{
-		if (i % 2 == 0)
-			even.push_back(cv[i]);
-		else
-			odd.push_back(cv[i]);
+		i = conj(i);
 	}
 
-	cpvec even_res = InvFFT(even);
-	cpvec odd_res = InvFFT(odd);
-	cpvec res(n);
+	cpvec res = FFT(cv);
 
-	for (int k = 0; k <= (n / 2 - 1); k++)
+	for (auto& i : res)
 	{
-		res[k] = even_res[k] + w * odd_res[k];
-		res[k + n / 2] = even_res[k] - w * odd_res[k];
-		w *= wn;
+		i = (conj(i) / (double)res.size());
 	}
 
 	return res;
 }
+
 
 int main()
 {
@@ -115,8 +102,7 @@ int main()
 		c[i] = a[i] * b[i];
 
 	c = InvFFT(c);
-	for (int k = 0; k <= (n - 1); k++) // 역행렬에 1/n을 곱해줘야한다.
-		c[k] /= n;
+
 
 
 	vector <int> res(n);
