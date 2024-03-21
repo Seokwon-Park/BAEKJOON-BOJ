@@ -17,35 +17,37 @@ int main() {
 
 	int n;
 	cin >> n;
-	vec<set<int>> frs(n + 1);
+	vec<vec<bool>> frs(n+1, vec<bool>(n+1, false));
 	for(int i = 1; i<= n; i++)
 		for (int j = 1; j <= 5; j++)
 		{
 			cin >> board[i][j];
 		}
 
+	int ans = 0;
+	int mx = INT_MIN;
 	for (int i = 1; i <= n; i++)
 	{
+		int friends = 0;
 		for (int j = 1; j <= 5; j++)
 		{
 			for (int k = 1; k <= n; k++)
 			{
-				if (i != k && board[i][j] == board[k][j])
+				if (i == k) continue;
+				if (board[i][j] == board[k][j])
 				{
-					frs[i].insert(k);
+					if (!frs[i][k])
+					{
+						frs[i][k] = true;
+						friends++;
+					}
 				}
 			}
-		}
-	}
-
-	int ans = 0;
-	int mx = INT_MIN;
-	for (int i = 1; i<=n;i++)
-	{
-		if ((int)frs[i].size() > mx)
-		{
-			mx = frs[i].size();
-			ans = i;
+			if (friends > mx)
+			{
+				mx = friends;
+				ans = i;
+			}
 		}
 	}
 
