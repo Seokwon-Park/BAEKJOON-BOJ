@@ -29,15 +29,11 @@ int main() {
 	ll time = 0;
 	//최초 찢음
 	ll paper = 1;
-	paper *= k;
-	time++;
-	while (paper < n)
+	n--;
+	if (n % (k - 1) == 0)
 	{
-		paper = paper + (k - 1);
-		time++;
+		cout << n / (k - 1);
 	}
-	if (paper == n)
-		cout << time;
 	else
 		cout << -1;
 
