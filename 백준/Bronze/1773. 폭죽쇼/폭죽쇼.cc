@@ -11,14 +11,17 @@ int main()
 
 	int n, c;
 	cin >> n >> c;
-	vector<int> cycle(n);
 	vector<bool> boom(c+1, false);
 	for (int i = 0; i < n; i++)
 	{
-		cin >> cycle[i];
-		for (int j = cycle[i]; j <= c; j+=cycle[i])
+		int cycle;
+		cin >> cycle;
+		if (!boom[cycle])
 		{
-			boom[j] = true;
+			for (int j = cycle; j <= c; j += cycle)
+			{
+				boom[j] = true;
+			}
 		}
 	}
 
