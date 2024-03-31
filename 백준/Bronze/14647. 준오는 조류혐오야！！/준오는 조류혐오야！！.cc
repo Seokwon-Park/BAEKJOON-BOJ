@@ -4,7 +4,7 @@ using namespace std;
 
 using ll = long long;
 
-string b[505][505];
+int b[505][505];
 
 int main()
 {
@@ -20,14 +20,16 @@ int main()
 		for (int j = 0; j < m; j++)
 		{
 			cin >> b[i][j];
-			for(auto c:b[i][j])
+			int tmp = b[i][j];
+			while(tmp)
 			{
-				if (c == '9')
+				if (tmp%10 == 9)
 				{
 					rows[i]++;
 					cols[j]++;
 					ncnt++;
 				}
+				tmp /= 10;
 			}
 		}
 	int rowmax = *max_element(rows.begin(), rows.end());
