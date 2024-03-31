@@ -4,8 +4,6 @@ using namespace std;
 
 using ll = long long;
 
-int b[505][505];
-
 int main()
 {
 	ios::sync_with_stdio(false);
@@ -13,6 +11,7 @@ int main()
 
 	int n, m;
 	cin >> n >> m;
+	vector<vector<int>> b(n, vector<int>(m));
 	vector<int> rows(n, 0);
 	vector<int> cols(m, 0);
 	int ncnt = 0;
