@@ -4,18 +4,6 @@ using namespace std;
 
 using ll = long long;
 
-bool isPelin(string s)
-{
-	int n = s.size();
-	for (int i = 0; i < n / 2; i++)
-	{
-		if (s[n - i - 1] != s[i])
-			return false;
-	}
-	return true;
-
-}
-
 int main()
 {
 	ios::sync_with_stdio(false);
