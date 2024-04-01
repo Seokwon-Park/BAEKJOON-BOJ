@@ -9,7 +9,7 @@ bigint fibo[10000];
 
 const int base = 1e9;
 
-bigint add(bigint s1, bigint s2)
+bigint add(bigint& s1, bigint& s2)
 {
 	int n = max(s1.size(), s2.size());
 	while (s1.size() < n)
