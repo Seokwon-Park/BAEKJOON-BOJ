@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <unordered_set>
 
 using namespace std;
 
@@ -12,23 +13,20 @@ int main()
 	int n;
 	char g;
 	cin >> n >> g;
-	vector<string> st;
+	unordered_set<string> st;
 	for (int i = 0; i < n; i++)
 	{
 		string s;
 		cin >> s;
-		st.push_back(s);
+		st.insert(s);
 	}
 
-	sort(st.begin(), st.end());
-	int sz = unique(st.begin(), st.end()) - st.begin();
-
 	if (g == 'Y')
-		cout << sz;
+		cout << st.size();
 	else if (g == 'F')
-		cout << sz / 2;
+		cout << st.size() / 2;
 	else
-		cout << sz / 3;
+		cout << st.size() / 3;
 
 
 	return 0;
