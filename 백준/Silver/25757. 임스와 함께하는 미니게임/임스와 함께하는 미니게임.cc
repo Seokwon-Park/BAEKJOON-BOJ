@@ -8,23 +8,27 @@ int main()
 {
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	
+
 	int n;
 	char g;
 	cin >> n >> g;
-	set<string> st;
+	vector<string> st;
 	for (int i = 0; i < n; i++)
 	{
 		string s;
 		cin >> s;
-		st.insert(s);
+		st.push_back(s);
 	}
+
+	sort(st.begin(), st.end());
+	int sz = unique(st.begin(), st.end()) - st.begin();
+
 	if (g == 'Y')
-		cout << st.size();
+		cout << sz;
 	else if (g == 'F')
-		cout << st.size() / 2;
+		cout << sz / 2;
 	else
-		cout << st.size() / 3;
+		cout << sz / 3;
 
 
 	return 0;
