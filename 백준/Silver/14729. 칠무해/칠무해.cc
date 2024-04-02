@@ -11,16 +11,20 @@ int main()
 
 	int n;
 	cin >> n;
-	vector<double> v(n);
-	for (auto& i : v)
-		cin >> i;
-
-	sort(v.begin(), v.end());
-	for (int i = 0; i < 7; i++)
+	priority_queue<double, vector<double>, greater<double>> pq;
+	for (int i = 0; i < n; i++)
+	{
+		double m;
+		cin >> m;
+		pq.push(m);
+	}
+	
+	for(int i = 0; i<7;i++)
 	{
 		cout << fixed;
 		cout.precision(3);
-		cout << v[i] << '\n';
+		cout << pq.top() << '\n';
+		pq.pop();
 	}
 
 	return 0;
