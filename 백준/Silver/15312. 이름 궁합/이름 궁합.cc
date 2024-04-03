@@ -13,28 +13,25 @@ int main()
 	
 	string a, b;
 	cin >> a >> b;
-	vector<vector<int>> v(a.size()*2-1, vector<int>());
+	vector<int> v;
 
 	for (int i = 0; i < a.size(); i++)
 	{
-		v[0].push_back(m[a[i] - 'A']);
-		v[0].push_back(m[b[i] - 'A']);
+		v.push_back(m[a[i] - 'A']);
+		v.push_back(m[b[i] - 'A']);
 	}
 
-	int i = 1;
-	while (true)
+	while (v.size() > 2)
 	{
-		for (int j = 0; j < v[i - 1].size()-1; j++)
+		vector<int>tmp( v.size() - 1);
+		for (int j = 0; j < v.size()-1; j++)
 		{
-			v[i].push_back((v[i - 1][j] + v[i - 1][j + 1]) % 10);
+			tmp[j] = (v[j] + v[j + 1]) % 10;
 		}
-		if (v[i].size() == 2)break;
-		i++;
+		v = tmp;
 	}
 
-	cout << v[i][0] << v[i][1];
-
-	
+	cout << v[0] << v[1];
 
 	return 0;
 }
