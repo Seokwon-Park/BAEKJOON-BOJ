@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	
+	int n;
+	cin >> n;
+	vector<int> v(51);
+	for (int i = 0; i < n; i++)
+	{
+		int m;
+		cin >> m;
+		v[m]++;
+	}
+
+	int ans = -1;
+	for (int i = 0; i < 51; i++)
+	{
+		if (v[i] == i)
+			ans = i;
+	}
+	cout << ans;
+
+	return 0;
+}
