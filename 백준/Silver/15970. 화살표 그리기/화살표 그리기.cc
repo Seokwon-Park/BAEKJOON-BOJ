@@ -4,7 +4,7 @@ using namespace std;
 
 using ll = long long;
 
-vector<int> pts[1005];
+vector<int> pts[5005];
 
 int main()
 {
