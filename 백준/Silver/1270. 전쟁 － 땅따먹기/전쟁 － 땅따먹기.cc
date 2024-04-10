@@ -15,22 +15,24 @@ int main()
 	cin >> n;
 	while (n--)
 	{
-		map<ll, int> m;
+		unordered_map<ll, int> m;
 		int t;
 		cin >> t;
+		ll ans = 0;
 		for (int i = 0; i < t; i++)
 		{
 			ll tmp;
 			cin >> tmp;
 			m[tmp]++;
-		}
-		auto mx = max_element(m.begin(), m.end(), [](const auto& a, const auto& b)
+			if (ans == 0 && m[tmp] > t / 2)
 			{
-				return a.second < b.second;
-			});
-		if (mx->second > t/2)
+				ans = tmp;
+			}
+
+		}
+		if (ans != 0)
 		{
-			cout << mx->first;
+			cout << ans;
 		}
 		else
 		{
