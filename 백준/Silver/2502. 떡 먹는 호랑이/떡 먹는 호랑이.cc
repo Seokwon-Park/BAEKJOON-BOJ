@@ -23,23 +23,17 @@ int main()
 	int d, k;
 	cin >> d >> k;
 
-	int a = 1, b = 1;
-	int res = fibo[d - 2] * b + fibo[d - 3] * a;
-	if (res == k)
-	{
-		cout << a << '\n' << b;
-		return 0;
-	}
+	int a = 1;
+	int b;
+	
 	while (1)
 	{
-		a++;
-		if (a > b)
+		if ((k - fibo[d - 3] * a) % fibo[d - 2] == 0)
 		{
-			b++;
-			a = 1;
+			b = (k - fibo[d - 3] * a) / fibo[d - 2];
+			if(a <= b)break;
 		}
-		res = fibo[d - 2] * b + fibo[d - 3] * a;
-		if (res == k) break;
+		a++;
 	}
 	cout << a << '\n' << b;
 	
