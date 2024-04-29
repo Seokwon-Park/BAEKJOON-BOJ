@@ -36,7 +36,7 @@ int main()
 		dp[i] = 1;
 	}
 
-	for (int i = 1; i <= 300000; i++)
+	for (int i = 1; i <= n; i++)
 	{
 		for (int j = 0; j<tetra.size(); j++)
 		{
