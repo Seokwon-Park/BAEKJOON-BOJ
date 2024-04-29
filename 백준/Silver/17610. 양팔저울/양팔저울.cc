@@ -9,12 +9,13 @@ using pii = pair<int, int>;
 int v[14];
 int isused[14];
 int n;
-unordered_map<int, bool> m;
+int m[2700000];
 
 void func(int k, int num)
 {
 	if (k == n)
 	{
+		if (num < 0) return;
 		m[num] = true;
 		return;
 	}
