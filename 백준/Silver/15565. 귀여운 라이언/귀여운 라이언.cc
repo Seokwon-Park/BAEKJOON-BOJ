@@ -10,15 +10,15 @@ int main()
 {
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	
+
 	int n, k;
 	cin >> n >> k;
-	vector<int> v(n);
 	vector<int> ryan;
 	for (int i = 0; i < n; i++)
 	{
-		cin >> v[i];
-		if (v[i] == 1)
+		int m;
+		cin >> m;
+		if(m == 1)
 			ryan.push_back(i);
 	}
 
