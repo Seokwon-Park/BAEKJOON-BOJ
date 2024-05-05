@@ -14,8 +14,8 @@ int main()
 	int n, h;
 	cin >> n >> h;
 	
-	vector<int> up;
-	vector<int> down;
+	vector<int> up(h+1, 0);
+	vector<int> down(h+1, 0);
 
 	for (int i = 0; i < n; i++)
 	{
@@ -23,28 +23,30 @@ int main()
 		cin >> m;
 		if (i % 2)
 		{
-			up.push_back(m);
+			up[m]++;
 		}
 		else
 		{
-			down.push_back(m);
+			down[m]++;
 		}
 	}
-	sort(up.begin(), up.end());
-	sort(down.begin(), down.end());
-	vector<int> tmp;
+
+	vector<int> pfup(h + 1, 0);
+	vector<int> pfdown(h + 1, 0);
+	for (int i = h; i >0; i--)
+	{
+		pfup[i - 1] = pfup[i] + up[i - 1];
+		pfdown[i - 1] = pfdown[i] + down[i - 1];
+	}
+
+	vector<int> res(h + 1, 0);
 	for (int i = 1; i <= h; i++)
 	{
-		auto d = lower_bound(down.begin(), down.end(), i);
-		auto u = lower_bound(up.begin(), up.end(), h - i + 1);
-		int sum = (down.end() - d) + (up.end() - u);
-		tmp.push_back(sum);
+		res[i] = pfup[i] + pfdown[h - i + 1];
 	}
 	
-	sort(tmp.begin(), tmp.end());
-	int val = tmp[0];
-	int range = upper_bound(tmp.begin(), tmp.end(), val) - lower_bound(tmp.begin(), tmp.end(), val);
-
+	int val = *min_element(res.begin()+1, res.end());
+	int range = count(res.begin() + 1, res.end(), val);
 	cout << val << ' ' << range;
 
 	return 0;
