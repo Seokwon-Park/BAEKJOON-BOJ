@@ -12,23 +12,18 @@ int main()
 	ios::sync_with_stdio(false);
 	cin.tie(0);
 
-	int n;
+	ll n;
 	cin >> n;
-	vector<bool> v(n);
-	int ans = 0;
+	ll tmp = 0;
 	for (int i = 0; i < n; i++)
 	{
-		int m;
+		ll m;
 		cin >> m;
-		if (v[m])
-			ans = m;
-		if (ans == 0)
-		{
-			v[m] = true;
-		}
+		tmp += m;
 	}
 
-	cout << ans;
+	tmp -= n * (n - 1) / 2LL;
+	cout << tmp;
 
 	return 0;
 }
