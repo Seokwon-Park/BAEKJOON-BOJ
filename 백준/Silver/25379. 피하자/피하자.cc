@@ -20,8 +20,7 @@ int main()
 
 	}
 
-	// 홀수를 왼쪽으로 밀때
-	int res1 = 0;
+	ll res1 = 0;
 	int needtomove = 0;
 	for (int i = 0; i < n; i++)
 	{
@@ -34,9 +33,8 @@ int main()
 			needtomove++;
 		}
 	}
-    
-    // 홀 오른쪽
-	int res2 = 0;
+
+	ll res2 = 0;
 	needtomove = 0;
 	for (int i = n-1; i >=0; i--)
 	{
