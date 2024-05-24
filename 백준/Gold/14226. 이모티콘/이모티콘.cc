@@ -20,7 +20,7 @@ int main()
 
 	for (int i = 1; i <= s + 1; i++)
 	{
-		for (int j = 2; i*j <= s *2; j++)
+		for (int j = 2; i*j <= 1005; j++)
 		{
 			dp[i * j] = min(dp[i * j], dp[i] + j);
 			dp[i * j - 1] = min(dp[i * j - 1], dp[i * j] + 1);
