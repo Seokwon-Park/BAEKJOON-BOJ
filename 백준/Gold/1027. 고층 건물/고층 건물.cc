@@ -8,7 +8,7 @@ using pii = pair<int, int>;
 using tiii = tuple<int, int, ll>;
 const int INF = 0x3f3f3f3f;
 
-int dp[105][105][105];
+int cnt[55];
 
 int main()
 {
@@ -26,34 +26,19 @@ int main()
 	int ans = 0;
 	for (int i = 0; i < n; i++)
 	{
-		int cnt = 0;
-		//left
-		double prev = 1e9;
-		for (int j = i - 1; j >= 0; j--)
-		{
-			double a = (v[i] - v[j]) / (i - j);
-			if (a < prev)
-			{
-				cnt++;
-				prev = a;
-			}
-		}
-		int cnt2 = 0;
-		prev = -1e9;
+		double prev = -1e9;
 		for (int j = i + 1; j < n; j++)
 		{
 			double a = (v[i] - v[j]) / (i - j);
 			if (a > prev)
 			{
-				cnt++;
+				cnt[i]++;
+				cnt[j]++;
 				prev = a;
 			}
 		}
-		ans = max(ans, cnt + cnt2);
 	}
-	cout << ans << '\n';
-
-
+	cout << *max_element(cnt, cnt+n) << '\n';
 
 	return 0;
 }
