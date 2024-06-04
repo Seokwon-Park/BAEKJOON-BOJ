@@ -17,7 +17,7 @@ int main()
 	cin >> n >> m;
 
 	vector<ll> v(n + 5);
-	vector<ll> left(n + 5);
+	vector<ll> left(m);
 
 	ll pfsum = 0;
 	for (int i = 1; i <= n; i++)
