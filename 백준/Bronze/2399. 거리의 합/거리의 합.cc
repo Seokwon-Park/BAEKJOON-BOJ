@@ -32,12 +32,12 @@ int main()
 	ll ans = 0;
 	for (int i = 0; i < n; i++)
 	{
-		for (int j = 0; j < n; j++)
+		for (int j = i+1; j < n; j++)
 		{
 			ans += my_abs(v[i] - v[j]);
 		}
 	}
-	cout << ans;
+	cout << ans*2;
 
 	return 0;
 }
