@@ -28,10 +28,7 @@ int main()
 		{
 			checker &= dp[i - j * j];
 		}
-		if (!checker)
-		{
-			dp[i] = 1;
-		}
+        dp[i] = !checker;
 	}
 
 
@@ -42,12 +39,7 @@ int main()
 		int n;
 		cin >> n;
 
-		bool isCubeWin = true;
-		for (int i = 1; i * i <= n; i++)
-		{
-			isCubeWin &= dp[n - i * i];
-		}
-		if (isCubeWin)
+        if (!dp[n])
 			cout << "cubelover";
 		else
 			cout << "koosaga";
