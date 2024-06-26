@@ -16,7 +16,6 @@ int main()
 	string s;
 	getline(cin, s);
 
-	vector<string> tokens;
 	string token = "";
 	for (int i = 0; i < s.size(); i++)
 	{
@@ -28,23 +27,21 @@ int main()
 		{
 			if (!token.empty())
 			{
-				tokens.push_back(token);
+				cout << token << ' ';
 				token = "";
 			}
 			if (s[i] == '<' || s[i] == '>' || s[i] == '(' || s[i] == ')')
 			{
-				string tmp;
-				tmp += s[i];
-				tokens.push_back(tmp);
+				cout << s[i] << ' ';
 			}
 			if (s[i] == '|')
 			{
-				tokens.push_back("||");
+				cout << "|| ";
 				i++;
 			}
 			if (s[i] == '&' && s[i + 1] == '&')
 			{
-				tokens.push_back("&&");
+				cout << "&& ";
 				i++;
 			}
 
@@ -52,11 +49,8 @@ int main()
 	}
 	if (!token.empty())
 	{
-		tokens.push_back(token);
+		cout << token;
 	}
-
-	for (auto ss : tokens)
-		cout << ss << ' ';
 
 	return 0;
 }
