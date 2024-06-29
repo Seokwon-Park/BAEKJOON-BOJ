@@ -21,14 +21,13 @@ int main()
 		cin >> a >> b;
 		string s;
 		cin >> s;
-		string ans = "";
-		for (auto c : s)
+		for (auto& c : s)
 		{
 			int ix = c - 'A';
 			int res = (a * ix + b) % 26;
-			ans += 'A' + res;
+			c = 'A' + res;
 		}
-		cout << ans << '\n';
+		cout << s << '\n';
 	}
 	
 
