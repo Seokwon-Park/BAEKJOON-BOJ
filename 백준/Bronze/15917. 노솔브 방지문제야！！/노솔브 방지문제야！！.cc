@@ -17,25 +17,16 @@ int main()
 	int q;
 	cin >> q;
 
-	for (int i = 0; i < q; i++)
+		for (int i = 0; i < q; i++)
 	{
 		int a;
 		cin >> a;
-		bool isPow = true;
-		while (a != 1)
-		{
-			if (a & 1)
-			{
-				isPow = false;
-				break;
-			}
-			a >>= 1;
-		}
-		if (isPow)
-			cout << 1;
+
+		if (a == 1) cout << 1 << '\n';
 		else
-			cout << 0;
-		cout << '\n';
+		{
+			cout << ((a & (-a)) == a) << '\n';
+		}
 	}
 
 
