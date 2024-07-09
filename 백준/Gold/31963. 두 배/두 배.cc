@@ -16,20 +16,18 @@ int main()
 
 	int n;
 	cin >> n;
-	vector<int> v(n);
+	vector<ll> v(n);
+	vector<ll> pow2(n, 0);
 	for (int i = 0; i < n; i++)
 	{
 		cin >> v[i];
 	}
 
-	int ans = 0;
+	ll ans = 0;
 	for (int i = 1; i < n; i++)
 	{
-		while (v[i] < v[i - 1])
-		{
-			v[i] <<= 1;
-			ans++;
-		}
+		pow2[i] = max((int)ceil(log2((double)v[i - 1] / (double)v[i]) + pow2[i - 1]), 0);
+		ans += pow2[i];
 	}
 	cout << ans;
 
