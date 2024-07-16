@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -21,11 +20,13 @@ int main()
 	int a, k;
 	cin >> a >> k;
 	dp[a] = 0;
-	for (int i = a; i < k; i++)
+	for (int i = a; i <= k; i++)
 	{
-		if (i * 2 <= k)
-			dp[i * 2] = min(dp[i * 2], dp[i] + 1);
-		dp[i + 1] = min(dp[i + 1], dp[i] + 1);
+		if (i % 2 == 0)
+		{
+			dp[i] = min(dp[i], dp[i / 2] + 1);
+		}
+		dp[i] = min(dp[i], dp[i-1] + 1);
 	}
 	cout << dp[k];
 
