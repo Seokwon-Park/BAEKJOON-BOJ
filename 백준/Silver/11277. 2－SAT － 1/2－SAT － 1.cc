@@ -30,6 +30,7 @@ void func(int k)
 				res &= (!xi[-a]) || xi[b];
 			else if (a < 0 && b < 0)
 				res &= (!xi[-a]) || (!xi[-b]);
+			if (!res)return;
 		}
 		f |= res;
 		if (f)
