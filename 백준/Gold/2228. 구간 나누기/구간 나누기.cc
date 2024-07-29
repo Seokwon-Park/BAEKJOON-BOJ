@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -16,7 +15,7 @@ int sum[105];
 int func(int n, int m) {
 	if (m == 0)
 		return 0;
-	if (n < 0)
+	if (n <= 0)
 		return -INF/2;
 	if (dp[n][m] != -INF)
 		return dp[n][m];
