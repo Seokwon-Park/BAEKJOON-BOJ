@@ -17,25 +17,25 @@ int main()
 	int n;
 	cin >> n;
 
-	map<int, vector<int>> xGroup;
-	map<int, vector<int>> yGroup;
+	map<int, int> xGroup;
+	map<int, int> yGroup;
 	for (int i = 0; i < n; i++)
 	{
 		int x, y;
 		cin >> x >> y;
-		xGroup[x].push_back(y);
-		yGroup[y].push_back(x);
+		xGroup[x]++;
+		yGroup[y]++;
 	}
 
 	int ans = 0;
 	for (auto xv : xGroup)
 	{
-		if (xv.second.size() > 1)
+		if (xv.second > 1)
 			ans++;
 	}
 	for (auto yv : yGroup)
 	{
-		if (yv.second.size() > 1)
+		if (yv.second > 1)
 			ans++;
 	}
 
