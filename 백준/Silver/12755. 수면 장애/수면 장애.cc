@@ -20,11 +20,18 @@ int main()
 	cin >> n;
 
 	int cur = 0;
+	int curlen = 1;
+	int nxt = 10;
 	int len = 0;
 	while (len < n)
 	{
 		cur++;
-		len += to_string(cur).size();
+		if (cur >= nxt)
+		{
+			nxt *= 10;
+			curlen++;
+		}
+		len += curlen;
 	}
 
 	len -= n;
