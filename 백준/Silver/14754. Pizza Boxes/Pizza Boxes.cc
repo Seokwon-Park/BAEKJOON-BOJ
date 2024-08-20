@@ -19,28 +19,41 @@ int main()
 	int n, m;
 	cin >> n >> m;
 
-	vector<vector<ll>> rows(n);
-	vector<vector<ll>> cols(m);
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < m; j++)
 		{
 			cin >> b[i][j];
-			rows[i].push_back(b[i][j]);
-			cols[j].push_back(b[i][j]);
 		}
 	}
 
+	vector<pii> v;
 	for (int i = 0; i < n; i++)
 	{
-		int j = max_element(rows[i].begin(), rows[i].end()) - rows[i].begin();
-		b[i][j] = 0;
+		int j = max_element(b[i], b[i] + m) - b[i];
+		v.push_back({ i, j });
 	}
 
 	for (int j = 0; j < m; j++)
 	{
-		int i = max_element(cols[j].begin(), cols[j].end()) - cols[j].begin();
-		b[i][j] = 0;
+		ll mx = -1;
+		int r = 0;
+		int c = 0;
+		for (int i = 0; i < n; i++)
+		{
+			if (mx < b[i][j])
+			{
+				mx = b[i][j];
+				r = i;
+				c = j;
+			}
+		}
+		v.push_back({ r, c });
+	}
+
+	for (auto [r, c] : v)
+	{
+		b[r][c] = 0;
 	}
 
 	ll ans = 0;
