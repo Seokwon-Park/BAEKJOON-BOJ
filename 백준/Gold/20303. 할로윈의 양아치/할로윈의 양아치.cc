@@ -65,25 +65,18 @@ int main()
 		l++;
 	}
 
-	vector<vector<int>> dp(l+1, vector<int>(k));
+	vector<int> dp(k, 0);
 
 	for (int i = 1; i <= l; i++)
 	{
 		auto [weight, value] = v[i];
-		for (int j = 1; j < k; j++)
+		for (int j = k-1; j >= weight; j--)
 		{
-			if (weight > j)
-			{
-				dp[i][j] = dp[i - 1][j];
-			}
-			else
-			{
-				dp[i][j] = max(dp[i-1][j], dp[i - 1][j - weight] + value);
-			}
+			dp[j] = max(dp[j], dp[j - weight] + value);
 		}
 	}
 
-	cout << dp[l][k-1];
+	cout << dp[k-1];
 
 	return 0;
 }
