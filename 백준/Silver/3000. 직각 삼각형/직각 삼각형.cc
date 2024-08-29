@@ -9,6 +9,9 @@ using tiii = tuple<int, int, int>;
 const int INF = 0x3f3f3f3f;
 const ll MOD = 1'000'000'007;
 
+int xline[100005];
+int yline[100005];
+
 int main()
 {
 	ios::sync_with_stdio(false);
@@ -18,8 +21,7 @@ int main()
 	cin >> n;
 	vector<pii> v;
 
-	map<int, int> xline;
-	map<int, int> yline;
+
 	for (int i = 0; i < n; i++)
 	{
 		int x, y;
@@ -28,8 +30,6 @@ int main()
 		xline[x]++;
 		yline[y]++;
 	}
-
-	sort(v.begin(), v.end());
 
 	ll ans = 0;
 	for (int i = 0; i < n; i++)
