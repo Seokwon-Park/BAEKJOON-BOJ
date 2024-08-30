@@ -47,13 +47,13 @@ int main()
 		{
 			b[0][x] += v[ix++];
 		}
+	}
 
-		for (int i = 1; i < m; i++)
+	for (int i = 1; i < m; i++)
+	{
+		for (int j = 1; j < m; j++)
 		{
-			for (int j = 1; j < m; j++)
-			{
-				b[i][j] = max({ b[i - 1][j], b[i][j - 1], b[i - 1][j - 1] });
-			}
+			b[i][j] = max({ b[i - 1][j], b[i][j - 1], b[i - 1][j - 1] });
 		}
 	}
 
