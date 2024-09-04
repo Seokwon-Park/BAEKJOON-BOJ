@@ -14,6 +14,10 @@ map<vector<int>, bool> dp;
 
 bool func(vector<int>& v)
 {
+	if (dp.find(v) != dp.end())
+	{
+		return dp[v];
+	}
 	if (v.size() == 1)
 	{
 		if (v[0] > 1)
@@ -52,10 +56,10 @@ bool func(vector<int>& v)
 		}
 		if (func(nxt))
 		{
-			return  true;
+			return dp[v] = true;
 		}
 	}
-	return false;
+	return dp[v] =  false;
 }
 
 int main()
