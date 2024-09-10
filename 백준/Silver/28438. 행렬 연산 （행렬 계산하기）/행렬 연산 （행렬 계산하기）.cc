@@ -16,7 +16,6 @@ int main()
 
 	int n, m, q;
 	cin >> n >> m >> q;
-	vector<vector<int>> b(n, vector<int>(m, 0));
 	vector<int> row(n);
 	vector<int> col(m);
 	for (int i = 0; i < q; i++)
@@ -45,10 +44,6 @@ int main()
 		}
 		cout << '\n';
 	}
-
-
-
-
 
 	return 0;
 }
