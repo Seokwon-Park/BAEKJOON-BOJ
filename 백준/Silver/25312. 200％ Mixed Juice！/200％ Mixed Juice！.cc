@@ -36,10 +36,7 @@ int main()
 	}
 	sort(wv.begin(), wv.end(), [](auto a, auto b) 
 		{
-			auto [wa, va] = a;
-			auto [wb, vb] = b;
-			ll l = lcm(wa, wb);
-			return l / wa * va > l / wb * vb;
+			return a.second*b.first> b.second*a.first;
 		});
 
 	ll leftAmount = m;
@@ -51,10 +48,11 @@ int main()
 		{
 			ll deno = totalSugar * w + v * leftAmount;
 			ll nume = w;
-			int g = gcd(deno, nume);
+			ll g = gcd(deno, nume);
 			cout << deno / g << '/' << nume/g;
 			break;
 		}
+
 		else
 		{
 			totalSugar += v;
