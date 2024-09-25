@@ -27,6 +27,12 @@ void func(int k, char last)
 		if (isUsed[i])continue;
 		cur += change[i];
 		isUsed[i] = true;
+		if (cur > ans)
+		{
+			cur -= change[i];
+			isUsed[i] = false;
+			continue;
+		}
 		if (k != 0)
 		{
 			if (last == str[i][0])
