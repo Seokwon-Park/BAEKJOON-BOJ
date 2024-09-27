@@ -9,7 +9,7 @@ using tiii = tuple<int, int, int>;
 const int INF = 0x3f3f3f3f;
 const int MOD = 1000000007;
 
-set<int> hasMaster;
+bool v[(1 << 20) + 5];
 
 int main()
 {
@@ -27,7 +27,7 @@ int main()
 		int lastFind = -1;
 		while (tmp)
 		{
-			if (hasMaster.find(tmp) != hasMaster.end())
+			if (v[tmp])
 			{
 				lastFind = tmp;
 				isArrive = false;
@@ -36,7 +36,7 @@ int main()
 		}
 		if (isArrive) // 원하는 땅에 도착할 수 있는 경우 땅 목록에 입력
 		{
-			hasMaster.insert(x);
+			v[x] = true;
 			cout << 0 << '\n';
 		}
 		else
