@@ -24,15 +24,20 @@ int main()
 		{
 			n = stoi(tmp);
 		}
-		int ans = 0;
-		for (int i = 1; i * i <= n * n; i++)
+		int ans = 1;
+		int k = n * n;
+		for (int i = 2; i <= k; i++)
 		{
-			if (n*n % i == 0)
+			int x = 0;
+			while (k % i == 0)
 			{
-				ans++;
+				k /= i;
+				x++;
 			}
+			ans *= (x + 1);
+			if (k == 1) break;
 		}
-		cout << ans << '\n';
+		cout << (ans+1)/2 << '\n';
 	}
 
 	return 0;
