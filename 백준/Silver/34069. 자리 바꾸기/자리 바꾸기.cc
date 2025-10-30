@@ -14,31 +14,6 @@ using Hash = unordered_map<key, value>;
 
 vector<vector<int>> b;
 
-void rotate(int x, int y, int xx, int yy)
-{
-	if (x > xx || y > yy) return;
-
-	auto bcopy = b;
-	for (int i = x; i < xx; i++)
-	{
-		bcopy[y][i] = b[y][i + 1];
-	}
-	for (int i = xx; i > x; i--)
-	{
-		bcopy[yy][i] = b[yy][i - 1];
-	}
-	for (int i = y; i < yy; i++)
-	{
-		bcopy[i][xx] = b[i+1][xx];
-	}
-	for (int i = yy; i > y; i--)
-	{
-		bcopy[i][x] = b[i-1][x];
-	}
-	b.swap(bcopy);
-	rotate(x + 1, y + 1, xx - 1, yy - 1);
-
-}
 
 int main()
 {
@@ -64,11 +39,25 @@ int main()
 	else
 	{
 		cout << "Yes\n";
-		rotate(0, 0, m-1, n-1);
 
 		for (int i = 0; i < n; i++)
 		{
-			for (int j = 0; j < m; j++)
+			for (int j = 0; j < m && j + 1 < m; j += 2)
+			{
+				swap(b[i][j], b[i][j + 1]);
+			}
+		}
+		if (m % 2)
+		{
+			for (int i = 0; i < n && i + 1 < n; i += 2)
+			{
+				swap(b[i][m - 1], b[i + 1][m - 1]);
+			}
+		}
+
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < m; j ++)
 			{
 				cout << b[i][j] << ' ';
 			}
