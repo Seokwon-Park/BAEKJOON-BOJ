@@ -14,7 +14,6 @@ using Hash = unordered_map<key, value>;
 
 int v[1005][1005];
 bool vis[1005][1005];
-pii coord[1000005];
 int dx[4] = { -1,0,1,0 };
 int dy[4] = { 0,-1,0,1 };
 
@@ -27,16 +26,17 @@ int main()
 	cin >> n >> m;
 
 	set<int, greater<int>> st;
+	priority_queue<pair<int, pii>> pq;
 
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < m; j++)
 		{
 			cin >> v[i][j];
-			coord[v[i][j]] = { i,j };
-			if (i == 0 || j == 0 || i == n-1 || j== m-1)
+			if (i == 0 || j == 0 || i == n - 1 || j == m - 1)
 			{
-				st.insert(v[i][j]);
+				pq.push({ v[i][j], {i,j} });
+				vis[i][j] = true;
 			}
 		}
 	}
@@ -46,17 +46,17 @@ int main()
 	vector<pii> ans;
 	while (k--)
 	{
-		int tp = *st.begin();
-		st.erase(tp);
-		auto [r, c] = coord[tp];
-		vis[r][c] = true;
+		auto tp = pq.top();
+		pq.pop();
+		auto [r, c] = tp.second;
 		ans.push_back({ r + 1,c + 1 });
 		for (int i = 0; i < 4; i++)
 		{
 			int rr = r + dy[i];
 			int cc = c + dx[i];
 			if (vis[rr][cc] || rr < 0 || cc < 0 || rr >= n || cc >= m) continue;
-			st.insert(v[rr][cc]);
+			pq.push({ v[rr][cc], {rr,cc} });
+			vis[rr][cc] = true;
 		}
 	}
 
