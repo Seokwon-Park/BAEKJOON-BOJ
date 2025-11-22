@@ -1,21 +1,29 @@
 #include <bits/stdc++.h>
 
-#define INF 0x3f3f3f3f
 using namespace std;
 
-vector<pair<int, int>> adj[20005];
+using ll = long long;
+using ull = unsigned long long;
+using pii = pair<int, int>;
+using tiii = tuple<int, int, int>;
+const int INF = 0x3f3f3f3f;
+const int MOD = 1'000'000'007;
+//const int MOD = 987'654'321;
+template <typename key, typename value>
+using Hash = unordered_map<key, value>;
+
+int v, e;
+int k;
+vector<pii> adj[20005];
 int d[20005];
 
-int main() {
-	ios::sync_with_stdio(0);
+int main()
+{
+	ios::sync_with_stdio(false);
 	cin.tie(0);
 
-	fill(d, d + 20005, INF);
-	int v, e;
-	cin >> v >> e;
-	int st;
-	cin >> st;
-	d[st] = 0;
+	cin >> v >> e >> k;
+	fill(d, d + v + 1, INF);
 	for (int i = 0; i < e; i++)
 	{
 		int u, v, w;
@@ -23,31 +31,24 @@ int main() {
 		adj[u].push_back({ w,v });
 	}
 
-	priority_queue<pair<int, int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
-
-	pq.push({ 0, st });
-
+	priority_queue<pii, vector<pii>, greater<pii>> pq;
+	d[k] = 0;
+	pq.push({ 0, k });
 	while (!pq.empty())
 	{
-		auto p = pq.top();
-		pq.pop();
-		if (p.first != d[p.second])continue;
-		for (auto nxt : adj[p.second])
+		auto [cost, cur] = pq.top(); pq.pop();
+		if (d[cur] != cost) continue;
+		for (auto [ncost, nxt] : adj[cur])
 		{
-			if (d[p.second] + nxt.first < d[nxt.second])
-			{
-				d[nxt.second] = d[p.second] + nxt.first;
-				pq.push({ d[nxt.second], nxt.second });
-			}
+			if (d[cur] + ncost >= d[nxt]) continue;
+			d[nxt] = d[cur] + ncost;
+			pq.push({ d[nxt], nxt });
 		}
 	}
 
 	for (int i = 1; i <= v; i++)
 	{
-		if (d[i] == INF)
-			cout << "INF\n";
-		else
-			cout << d[i] << '\n';
+		cout << (d[i] == INF? "INF" : to_string(d[i])) << '\n';
 	}
 
 	return 0;
