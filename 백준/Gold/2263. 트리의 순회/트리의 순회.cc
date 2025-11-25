@@ -16,31 +16,18 @@ int inorder[100005];
 int postorder[100005];
 int position[100005];
 
-int root = -1;
-int l[100005];
-int r[100005];
-
-int solve(int inst, int inen, int post, int poen)
+void solve(int inst, int inen, int post, int poen)
 {
-	if (inst > inen || post > poen) return -1;
+	if (inst > inen || post > poen) return;
 
 	int sroot = postorder[poen];
 
 	int rootpos = position[sroot];
 	int lsize = rootpos - inst;
 
-	l[sroot] = solve(inst, rootpos - 1, post, post + lsize - 1);
-	r[sroot] = solve(rootpos + 1, inen, post + lsize, poen - 1);
-
-	return sroot;
-}
-
-void preorder(int node)
-{
-	cout << node << ' ';
-	if (l[node] != -1) preorder(l[node]);
-	if (r[node] != -1) preorder(r[node]);
-
+	cout << sroot << ' ';
+	solve(inst, rootpos - 1, post, post + lsize - 1);
+	solve(rootpos + 1, inen, post + lsize, poen - 1);
 }
 
 int main()
@@ -63,9 +50,6 @@ int main()
 	}
 
 	solve(0, n - 1, 0, n - 1);
-
-	preorder(postorder[n - 1]);
-	
 	
 	return 0;
 }
