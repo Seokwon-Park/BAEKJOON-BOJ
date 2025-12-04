@@ -12,43 +12,68 @@ const int MOD = 1'000'000'007;
 template <typename key, typename value>
 using Hash = unordered_map<key, value>;
 
+int r, c;
+vector<string> v;
+
+bool solve(int mid)
+{
+	vector<string> tmp;
+	tmp.resize(c);
+
+	for (int i = 0; i < c; i++)
+	{
+		tmp[i] = v[i].substr(0, mid);
+	}
+
+	sort(tmp.begin(), tmp.end());
+
+	for (int i = 0; i < c-1; i++)
+	{
+		if (tmp[i] == tmp[i + 1])
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
 
 int main()
 {
 	ios::sync_with_stdio(false);
 	cin.tie(0);
 
-	int r, c;
 	cin >> r >> c;
-	vector<string> v(r);
+	v.resize(c);
+	for (int j = 0; j < c; j++) v[j].resize(r);
 	for (int i = 0; i < r; i++)
 	{
-		cin >> v[i];
-	}
-
-	vector<string> h(c);
-	for (int i = r-1; i >= 0; i--)
-	{
 		for (int j = 0; j < c; j++)
 		{
-			h[j].push_back(v[i][j]);
+			cin >> v[j][r - i - 1];
 		}
 	}
 
-	int cnt = 0;
-	for (int i = 0; i < r-1; i++)
+	int st = 0;
+	int en = r*2;
+
+	int ans = 0;
+	// 얼마나 짧게 잘라도 중복이 안되는가? 를 찾아야한다.
+	while(st+1 < en)
 	{
-		set<string> s;
-		for (int j = 0; j < c; j++)
+		int mid = (st + en) / 2; 
+		if (solve(mid))
 		{
-			h[j].pop_back();
-			s.insert(h[j]);
+			en = mid;
+			ans = mid;
 		}
-		if (s.size() == c)cnt++;
-		else break;
+		else
+		{
+			st = mid;
+		}
 	}
 
-	cout << cnt;
+	cout << r- ans;
 
 	return 0;
 }
