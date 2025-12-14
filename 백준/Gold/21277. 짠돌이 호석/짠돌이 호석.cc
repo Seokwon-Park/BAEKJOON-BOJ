@@ -24,7 +24,7 @@ bool compare(int sr, int sc)
 	{
 		for (int j = 0; j < c; j++)
 		{
-			if (board[sr + i][sc + j] == other[i][j])
+			if (board[sr + i][sc + j] && other[i][j])
 			{
 				return false;
 			}
