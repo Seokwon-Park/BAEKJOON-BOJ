@@ -20,28 +20,24 @@ int main()
 	int n, m;
 	cin >> n >> m;
 
-	vector<bool> use(n+1);
 	vector<int> ans;
+	ans.reserve(n);
+
+	int st = 1;
+	int en = n;
 	for (int i = 0; i < n; i++)
 	{
-		for (int j = n; j > 0; j--)
+		if (n - i - 1 <= m)
 		{
-			if (use[j]) continue;
-			if (j - 1 <= m)
-			{
-				m -= j - 1;
-				ans.push_back(j);
-				use[j] = true;
-				break;
-			}
+			m -= n - i - 1;
+			ans.push_back(en);
+			en--;
 		}
-	}
-
-	for(int i = 1; i<=n;i++)
-	{
-		if (use[i]) continue;
-		ans.push_back(i);
-
+		else
+		{
+			ans.push_back(st);
+			st++;
+		}
 	}
 
 	for (auto i : ans)
