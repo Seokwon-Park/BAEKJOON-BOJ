@@ -18,13 +18,25 @@ int main()
 {
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	
+
 	ll b, n;
 	while (cin >> b >> n)
 	{
 		vector<pair<ll, ll>> v;
 		if (b == 0 && n == 0)break;
-		for (ll k = -n; b * k * k / (n * n) <= b; k++)
+
+		ll x = 0;
+		for (ll d = 1; d <= n && d * d <= b; d++)
+		{
+			if (n % d == 0 && b % (d * d) == 0)
+			{
+				x = d;
+			}
+		}
+
+		ll kmin = n / x;
+
+		for (ll k = -n; b * k * k / (n * n) <= b; k+= kmin)
 		{
 			if (n + k == 0 || (n + k == n && b - b * k * k / (n * n) == b)) continue;
 			if (b * k * k % (n * n) == 0)
@@ -35,7 +47,7 @@ int main()
 
 		sort(v.begin(), v.end(), [](auto& a, auto& b)
 			{
-				return (double)a.first /a.second < (double)b.first / b.second;
+				return (double)a.first / a.second < (double)b.first / b.second;
 			});
 
 		for (auto [a, b] : v)
