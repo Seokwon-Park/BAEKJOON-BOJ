@@ -23,19 +23,19 @@ int main()
 	while (cin >> n)
 	{
 		if (!n) break;
-		ll a = 1;
-		ll b = 2;
-		int len = 2;
-		while (a % n != 0 || b % n != 1)
+		ll a = 0;
+		ll b = 1;
+		int len = 0;
+		do
 		{
-			ll nxt = (a + b);
-			a = b%n;
-			b = nxt%n;
+			ll nxt = a + b;
+			if (nxt >= n) nxt -= n;
+			a = b;
+			b = nxt;
 			len++;
-		}
+		} while (a != 0 || b != 1); 
 		cout << n << ' ' << len << '\n';
 	}
-
 
 
 	return 0;
