@@ -21,7 +21,7 @@ int main()
 
 	ll n, a, b;
 	cin >> n >> a >> b;
-	
+
 	// 하나는 <<2 하고 AND
 	// 하나는 <<2 하고 OR
 	// 얘네를 1번씩 써보면 사실상 2진법으로 1비트가 왼쪽으로 밀린값
@@ -73,6 +73,11 @@ int main()
 			n /= 2;
 		}
 
+		if (cur == 1)
+		{
+			mincont = min(cont, mincont);
+		}
+
 		if (checkzero && mincont == 1)
 		{
 			cout << "NO";
@@ -82,8 +87,6 @@ int main()
 			cout << "YES";
 		}
 	}
-
-
 
 	return 0;
 }
