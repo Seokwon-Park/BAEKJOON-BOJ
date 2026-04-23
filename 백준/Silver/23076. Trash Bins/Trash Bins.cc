@@ -16,7 +16,7 @@ using Hash = unordered_map<key, value>;
 int n;
 int v[500005];
 
-int bfs(vector<int> houses)
+ll bfs(vector<int>& houses)
 {
 	queue<int> q;
 	for (int i = 0; i < houses.size(); i++)
@@ -25,8 +25,8 @@ int bfs(vector<int> houses)
 		v[houses[i]] = 1;
 	}
 
-	int res = 0;
-	int d = 1;
+	ll res = 0;
+	ll d = 1;
 	while (!q.empty())
 	{
 		int qs = q.size();
